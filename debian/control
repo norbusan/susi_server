@@ -12,6 +12,6 @@ Vcs-Browser: https://github.com/fossasia/susi_server
 
 Package: susi-server
 Architecture: all
-Depends: susi-skill-data, default-jdk-headless, ${shlibs:Depends}, ${misc:Depends}
+Depends: susi-skill-data, adduser, default-jdk-headless, ${shlibs:Depends}, ${misc:Depends}
 Description: SUSI.AI Server
  Providing deep answers!
