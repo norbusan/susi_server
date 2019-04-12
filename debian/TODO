@@ -1,0 +1,4 @@
+- systemd install files
+- create user "susi" or similar to be running the server?
+  - /var/lib/susi-server/data would be owned by that user
+- update control/changelog with new version number from script

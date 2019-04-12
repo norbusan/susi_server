@@ -1,0 +1,10 @@
+Package: susi-server
+Version: 20190412+git13ddc909-1
+Architecture: all
+Maintainer: SUSI.AI Packaging Team <norbert@preining.info>
+Installed-Size: 112
+Depends: default-jdk-headless
+Section: misc
+Priority: extra
+Description: SUSI.AI Server
+ Providing deep answers!
