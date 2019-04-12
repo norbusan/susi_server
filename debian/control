@@ -1,6 +1,6 @@
 Source: susi-server
 Section: misc
-Priority: extra
+Priority: optional
 Maintainer: SUSI.AI Packaging Team <norbert@preining.info>
 Build-Depends: debhelper (>= 12),
 	gradle-debian-helper,

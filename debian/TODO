@@ -1,2 +1,19 @@
 - try to make build using the normal gradle helper (no dh_auto_build_override)
-- try proper debian packaging by elimination internet access during build
+- proper debian packaging: by now the gradle build pulls from the internet,
+  this is a no-go in Debian. We should see whether all libraries are already
+  packaged in Debian or not.
+- stop scripts: not sure whether this is actually necessary, in my local
+  experiments with systemctl start/stop I had no problems
+- configuration: put customized_config.properties into /etc/susi-server
+  and link it to the correct place
+- fix embedded js libs:
+  E: susi-server: privacy-breach-uses-embedded-file usr/share/susi-server/susi_server/html/index.html You may use the libjs-bootstrap package. (https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css)
+  W: susi-server: privacy-breach-generic usr/share/susi-server/susi_server/html/index.html [<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=material+icons">] (https://fonts.googleapis.com/icon?family=material+icons)
+  E: susi-server: privacy-breach-uses-embedded-file usr/share/susi-server/susi_server/html/index.html You may use the libjs-jquery package. (https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js)
+  W: susi-server: embedded-javascript-library usr/share/susi-server/susi_server/html/js/html5shiv.min.js please use libjs-html5shiv
+  W: susi-server: embedded-javascript-library usr/share/susi-server/susi_server/html/js/jquery.form.min.js please use libjs-jquery-form
+  W: susi-server: embedded-javascript-library usr/share/susi-server/susi_server/html/js/jquery.min.js please use libjs-jquery
+  W: susi-server: embedded-javascript-library usr/share/susi-server/susi_server/html/js/raphael-min.js please use libjs-raphael
+  W: susi-server: embedded-javascript-library usr/share/susi-server/susi_server/html/js/underscore-min.js please use libjs-underscore
+- many many W: susi-server: jar-contains-source
+- W: susi-server: duplicate-font-file usr/share/susi-server/susi_server/html/fonts/glyphicons-halflings-regular.ttf also in fonts-glewlwyd
