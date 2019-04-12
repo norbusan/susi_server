@@ -1,4 +1,2 @@
-- systemd install files
-- create user "susi" or similar to be running the server?
-  - /var/lib/susi-server/data would be owned by that user
-- update control/changelog with new version number from script
+- try to make build using the normal gradle helper (no dh_auto_build_override)
+- try proper debian packaging by elimination internet access during build

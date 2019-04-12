@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+DDIR=debian/susi-server
+SSERVER_BASE=/usr/share/susi-server
+SSERVER_VAR=/var/lib/susi-server
+JARFILE=build/libs/susi_server-all.jar
+
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	./gradlew --gradle-user-home .gradle build
+
+override_dh_auto_install:
+	mkdir -p $(DDIR)$(SSERVER_BASE)/bin
+	mkdir -p $(DDIR)$(SSERVER_BASE)/release
+	mkdir -p $(DDIR)$(SSERVER_BASE)/build/libs
+	mkdir -p $(DDIR)$(SSERVER_VAR)
+	cp -R conf $(DDIR)$(SSERVER_BASE)
+	cp -R html $(DDIR)$(SSERVER_BASE)
+	cp $(JARFILE) $(DDIR)$(SSERVER_BASE)/build/libs
+	cp bin/*.sh $(DDIR)$(SSERVER_BASE)/bin
+	mkdir $(DDIR)$(SSERVER_VAR)/data
+	ln -s $(SSERVER_VAR)/data $(DDIR)$(SSERVER_BASE)/data
+	#
+	# do some cleanup
+	chmod -R ugo-x `find $(DDIR)$(SSERVER_BASE)/ -type f`
+	chmod ugo+x $(DDIR)$(SSERVER_BASE)/bin/*.sh
+
+
