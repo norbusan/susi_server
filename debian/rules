@@ -1,7 +1,8 @@
 #!/usr/bin/make -f
 
 DDIR=debian/susi-server
-SSERVER_BASE=/usr/share/susi-server
+BASE=/usr/share/susi-server
+SSERVER=$(BASE)/susi_server
 SSERVER_VAR=/var/lib/susi-server
 JARFILE=build/libs/susi_server-all.jar
 
@@ -13,19 +14,19 @@ override_dh_auto_build:
 	./gradlew --gradle-user-home .gradle build
 
 override_dh_auto_install:
-	mkdir -p $(DDIR)$(SSERVER_BASE)/bin
-	mkdir -p $(DDIR)$(SSERVER_BASE)/release
-	mkdir -p $(DDIR)$(SSERVER_BASE)/build/libs
+	mkdir -p $(DDIR)$(SSERVER)/bin
+	mkdir -p $(DDIR)$(SSERVER)/release
+	mkdir -p $(DDIR)$(SSERVER)/build/libs
 	mkdir -p $(DDIR)$(SSERVER_VAR)
-	cp -R conf $(DDIR)$(SSERVER_BASE)
-	cp -R html $(DDIR)$(SSERVER_BASE)
-	cp $(JARFILE) $(DDIR)$(SSERVER_BASE)/build/libs
-	cp bin/*.sh $(DDIR)$(SSERVER_BASE)/bin
+	cp -R conf $(DDIR)$(SSERVER)
+	cp -R html $(DDIR)$(SSERVER)
+	cp $(JARFILE) $(DDIR)$(SSERVER)/build/libs
+	cp bin/*.sh $(DDIR)$(SSERVER)/bin
 	mkdir $(DDIR)$(SSERVER_VAR)/data
-	ln -s $(SSERVER_VAR)/data $(DDIR)$(SSERVER_BASE)/data
+	ln -s $(SSERVER_VAR)/data $(DDIR)$(SSERVER)/data
 	#
 	# do some cleanup
-	chmod -R ugo-x `find $(DDIR)$(SSERVER_BASE)/ -type f`
-	chmod ugo+x $(DDIR)$(SSERVER_BASE)/bin/*.sh
+	chmod -R ugo-x `find $(DDIR)$(SSERVER)/ -type f`
+	chmod ugo+x $(DDIR)$(SSERVER)/bin/*.sh
 
 
