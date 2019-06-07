@@ -475,13 +475,19 @@ public class SusiAction {
             String volume = thoughts.unify(getStringAttr("volume"), false, Integer.MAX_VALUE);
             int p = volume.indexOf(' ');
             if (p >= 0) volume = volume.substring(0, p).trim();
-            int v = 50;
-            try {
-                v = Integer.parseInt(volume);
-            } catch (NumberFormatException e) {
+           if (volume.equals("up")) {
+                this.json.put("volume", "up");
+            } else if (volume.equals("down")) {
+                this.json.put("volume", "down");
+            } else {
+                int v = 50;
+                try {
+                    v = Integer.parseInt(volume);
+                } catch (NumberFormatException e) {
+                }
+                v = Math.min(100, Math.max(0, v));
+                this.json.put("volume", Integer.toString(v));
             }
-            v = Math.min(100, Math.max(0, v));
-            this.json.put("volume", Integer.toString(v));
         }
         return actions;
     }
