@@ -121,6 +121,14 @@ set audio volume to *|set audio volume to * percent|set audio volume to * points
 ]}
 eol
 
+# volume up|down
+volume *
+!console:Audio volume adjusted.
+{"actions":[
+{"type":"audio_volume", "volume":$1$}
+]}
+eol
+
 # some fake commands that do nothing with the computation state
 ::minor
 
